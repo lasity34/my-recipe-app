@@ -1,0 +1,14 @@
+
+import React, {useState, useEffect} from "react";
+import CocktailCard from "./CocktailCard.jsx";
+
+function CocktailList() {
+    const [cocktails, setCocktails] = useState([]);
+
+    useEffect(() => {
+        fetch(`api/cocktails`)
+            .then(response => response.json())
+            .then(data => setCocktails(data))
+            .catch(error => console.error("Error fetching cocktails:", error))
+    }, [])
+}
