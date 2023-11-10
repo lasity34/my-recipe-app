@@ -1,15 +1,11 @@
 import express from "express"
 import { query } from "./db.mjs";
 import cors from 'cors';
-import cocktailsRouter from './routes/cocktails.js'; 
-import countriesRouter from './routes/countries.js';
 const app = express();
 const PORT = 3001;
 
 app.use(cors())
 app.use(express.json());
-
-
 
 
 app.use('/api/cocktails', cocktailsRouter);

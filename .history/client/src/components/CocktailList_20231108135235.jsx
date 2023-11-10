@@ -18,7 +18,7 @@ function CocktailList() {
           return response.text();  // Change to text() for debugging purposes
         })
         .then(text => {
-         
+          console.log(text);  // Log the raw response text
           return JSON.parse(text);  // Manually parse the text to JSON
         })
         .then(data => setCocktails(data))
