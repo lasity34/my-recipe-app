@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CocktailList from "./components/CocktailList/CocktailList";
-import Header from "./components/Header/Header";
-import Navbar from "./components/Navigation/Navigation";
+import Header from "./components/Header";
+import Navbar from "./components/Navigation";
 import "./App.css";
 
 function App() {

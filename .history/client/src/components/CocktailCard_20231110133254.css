@@ -1,0 +1,29 @@
+
+
+
+.cocktail_card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 2em 1em;
+    width: 15%;
+  }
+  
+  .cocktail_image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  
+  .cocktail_info {
+    padding: 0.5em 1em;
+  }
+
+  .cocktail_info p {
+    font-size: 0.8em;
+  }
+
+  .cocktail_info h3 {
+    margin: 0;
+  }
+  
