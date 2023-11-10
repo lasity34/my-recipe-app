@@ -12,18 +12,11 @@
 
 .navbar ul {
   list-style-type: none;
-  
   margin: 0;
   padding: 0;
 }
 
-.dropdown-names {
-  display: flex;
-}
 
-.navbar li {
- display: flex;
-}
 
 .navbar li a {
   position: relative;
