@@ -46,7 +46,7 @@ function CocktailList() {
                     isOpen={isModalOpen}
                     onClose={closeModal}
                     cocktail={selectedCocktail}
-                  
+                    // You'll need to pass the ingredients here if required
                 />
             )}
         </div>

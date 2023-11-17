@@ -1,7 +1,7 @@
 import './CocktailList.css';
 
 import React, { useState, useEffect } from "react";
-import CocktailCard from "../CocktailCard/CocktailCard";
+import CocktailCard from "../CocktailCard/CocktailCard.jsx";
 import CocktailModal from '../CocktailModal/CocktailModal';
 
 function CocktailList() {
@@ -22,15 +22,9 @@ function CocktailList() {
     }, []);
 
     const openModal = (cocktail) => {
-        fetch(`/api/cocktails/${cocktail.id}`)
-            .then(response => response.json())
-            .then(data => {
-                setSelectedCocktail(data);
-                setModalOpen(true);
-            })
-            .catch(error => console.error("Error fetching cocktail details:", error));
-      };
-      
+        setSelectedCocktail(cocktail);
+        setModalOpen(true);
+    };
 
     const closeModal = () => {
         setModalOpen(false);
@@ -46,7 +40,7 @@ function CocktailList() {
                     isOpen={isModalOpen}
                     onClose={closeModal}
                     cocktail={selectedCocktail}
-                  
+                    // You'll need to pass the ingredients here if required
                 />
             )}
         </div>

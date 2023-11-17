@@ -144,20 +144,19 @@ router.get('/:id', async (req, res) => {
 
 
 // PATCH (update) a cocktail
-// PATCH (update) a cocktail
 router.patch('/:id', async (req, res) => {
   const { id } = req.params;
-  const { title, description, type, country_name, ingredients } = req.body;
+  const { title, description, type, country_id, ingredients } = req.body;
 
   const updateCocktailSql = `
     UPDATE cocktails 
-    SET title = $1, description = $2, type = $3, country_id = (SELECT id FROM countries WHERE name = $4)
+    SET title = $1, description = $2, type = $3, country_id = $4 
     WHERE id = $5 
     RETURNING *;
   `;
 
   try {
-    const cocktailResult = await query(updateCocktailSql, [title, description, type, country_name, id]);
+    const cocktailResult = await query(updateCocktailSql, [title, description, type, country_id, id]);
     if (cocktailResult.rows.length === 0) {
       return res.status(404).json({ error: 'Cocktail not found' });
     }
@@ -170,7 +169,6 @@ router.patch('/:id', async (req, res) => {
     res.status(500).json({ error: 'Error updating cocktail' });
   }
 });
-
 
 
 

@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.post('/with-ingredients', async (req, res) => {
+router.post('/', async (req, res) => {
   const { title, description, type, country_name, rating_average, image_url, ingredients } = req.body;
 
   try {
@@ -113,21 +113,13 @@ router.post('/with-ingredients', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   const sql = `
-    SELECT 
-      c.id, 
-      c.title, 
-      c.description, 
-      c.type, 
-      co.name AS country_name, 
-      c.rating_average, 
-      c.image_url, 
-      json_agg(json_build_object('name', i.name, 'quantity', ci.quantity)) as ingredients
+    SELECT c.id, c.title, c.description, c.type, c.country_id, c.rating_average, c.image_url, 
+           json_agg(json_build_object('name', i.name, 'quantity', ci.quantity)) as ingredients
     FROM cocktails c
     LEFT JOIN cocktail_ingredients ci ON c.id = ci.cocktail_id
     LEFT JOIN ingredients i ON ci.ingredient_id = i.id
-    LEFT JOIN countries co ON c.country_id = co.id
     WHERE c.id = $1
-    GROUP BY c.id, co.name, c.title, c.description, c.type, c.rating_average, c.image_url
+    GROUP BY c.id;
   `;
 
   try {
@@ -142,22 +134,20 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-
-// PATCH (update) a cocktail
 // PATCH (update) a cocktail
 router.patch('/:id', async (req, res) => {
   const { id } = req.params;
-  const { title, description, type, country_name, ingredients } = req.body;
+  const { title, description, type, country_id, ingredients } = req.body;
 
   const updateCocktailSql = `
     UPDATE cocktails 
-    SET title = $1, description = $2, type = $3, country_id = (SELECT id FROM countries WHERE name = $4)
+    SET title = $1, description = $2, type = $3, country_id = $4 
     WHERE id = $5 
     RETURNING *;
   `;
 
   try {
-    const cocktailResult = await query(updateCocktailSql, [title, description, type, country_name, id]);
+    const cocktailResult = await query(updateCocktailSql, [title, description, type, country_id, id]);
     if (cocktailResult.rows.length === 0) {
       return res.status(404).json({ error: 'Cocktail not found' });
     }
@@ -170,7 +160,6 @@ router.patch('/:id', async (req, res) => {
     res.status(500).json({ error: 'Error updating cocktail' });
   }
 });
-
 
 
 
