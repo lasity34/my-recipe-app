@@ -15,6 +15,7 @@ function LayoutWithHeader() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<CocktailList />} />
+        {/* Add other routes that should include the header and navbar here */}
       </Routes>
     </>
   );
