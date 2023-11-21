@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'https://boozy-benders.onrender.com'
+      '/api': 'http://localhost:3001'
     }
   }
 })
