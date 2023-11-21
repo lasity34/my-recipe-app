@@ -23,12 +23,12 @@ export default function Header() {
           <input type="text" name="" id="" placeholder="Search Cocktails" />
         </div>
         <hr className="divider" />
-        <div className="user-container">
-        <FontAwesomeIcon icon={faUser} />
-        <a href="/login" className="auth-link">Login</a>
-        <span> | </span>
-        <a href="/signup" className="auth-link">Signup</a>
-      </div>
+        <div className="login-container">
+          <FontAwesomeIcon icon={faUser} />
+          <a href="/login" className="login-link">
+            Login
+          </a>
+        </div>
       </div>
     </div>
   );

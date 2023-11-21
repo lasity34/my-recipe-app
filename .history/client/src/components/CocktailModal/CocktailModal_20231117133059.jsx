@@ -34,19 +34,16 @@ const CocktailModal = ({ isOpen, onClose, cocktail }) => {
             <img src={cocktail.image_url} alt={cocktail.title} />
           </div>
           <div className="info_container">
-    <p className="description">{cocktail.description}</p>
-    <p className="country">Country: {cocktail.country_name}</p>
-    <div className="ingredients">
-        <ul>
-            {cocktail.ingredients.map((ingredient, index) => (
-                <li key={index}>
-                    <span className="name">{ingredient.name}</span> - <span>{ingredient.quantity}</span>
-                </li>
-            ))}
-        </ul>
-    </div>
-</div>
-
+            <p>{cocktail.description}</p>
+            <p>{cocktail.country_name}</p>
+            <div className="ingredients">
+              {cocktail.ingredients.map((ingredient, index) => (
+                <ul key={index} className="ingredient-tag">
+                 <li> {ingredient.name} - {ingredient.quantity} </li>
+                </ul>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

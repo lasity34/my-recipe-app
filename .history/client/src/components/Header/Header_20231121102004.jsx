@@ -23,7 +23,7 @@ export default function Header() {
           <input type="text" name="" id="" placeholder="Search Cocktails" />
         </div>
         <hr className="divider" />
-        <div className="user-container">
+        <div className="login-container">
         <FontAwesomeIcon icon={faUser} />
         <a href="/login" className="auth-link">Login</a>
         <span> | </span>

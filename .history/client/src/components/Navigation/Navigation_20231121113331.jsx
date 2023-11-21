@@ -46,7 +46,7 @@ export default function Navbar() {
             <a href="/about" className="nav-link">Recently Added</a>
           </li>
           <li className="nav-item">
-            <a href="/about" className="nav-link">Top Rated</a>
+            <a href="/about" className="nav-link">About</a>
           </li>
         </ul>
         </div>

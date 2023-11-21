@@ -98,18 +98,10 @@
 }
 
 @media (max-width: 600px) {
-  .modal_container {
-      flex-direction: column; /* Stack the containers on small screens */
-      align-items: center;
-  }
-
-  .image_container,
-  .info_container {
-      width: 100%; /* Full width on small screens */
-      padding: 10px 0; /* Adjust padding */
+  .modal-content {
+    max-width: 80%; /* Adjust for very small screens */
   }
 }
-
 
 @media (max-height: 500px) {
   .modal-content {

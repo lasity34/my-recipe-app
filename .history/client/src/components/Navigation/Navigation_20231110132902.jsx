@@ -43,10 +43,15 @@ export default function Navbar() {
             </ul>
           </li>
           <li className="nav-item">
-            <a href="/about" className="nav-link">Recently Added</a>
+            <a href="#" className="nav-link">Ratings</a>
+            <ul className="dropdown">
+              {ratings.map(rating => (
+                <li key={rating} className="dropdown-item">{rating} Stars</li>
+              ))}
+            </ul>
           </li>
           <li className="nav-item">
-            <a href="/about" className="nav-link">Top Rated</a>
+            <a href="/about" className="nav-link">About</a>
           </li>
         </ul>
         </div>

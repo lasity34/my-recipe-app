@@ -1,6 +1,6 @@
 // App.jsx
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import CocktailList from "./components/CocktailList/CocktailList";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navigation/Navigation";
@@ -8,28 +8,19 @@ import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
 import "./App.css";
 
-function LayoutWithHeader() {
-  return (
-    <>
-      <Header />
-      <Navbar />
-      <Routes>
-        <Route exact path="/" element={<CocktailList />} />
-        {/* Add other routes that should include the header and navbar here */}
-      </Routes>
-    </>
-  );
-}
-
 function App() {
+  const location = useLocation();
+  const isAuthRoute = location.pathname === '/login' || location.pathname === '/signup';
+
   return (
     <Router>
       <div className="app">
+        <Header />
+        {!isAuthRoute && <Navbar />}
         <Routes>
-          <Route exact path="/" element={<LayoutWithHeader />} />
+          <Route exact path="/" element={<CocktailList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          {/* Add other routes that should not include the header and navbar directly here */}
         </Routes>
       </div>
     </Router>
@@ -37,3 +28,4 @@ function App() {
 }
 
 export default App;
+
