@@ -32,7 +32,7 @@ function Login() {
         if (response.ok) {
          
             const userData = await response.json();
-            console.log(userData)
+            console.log(userData.role)
             if (userData.role === 'admin') {
                 navigate('/admin'); 
             } else {

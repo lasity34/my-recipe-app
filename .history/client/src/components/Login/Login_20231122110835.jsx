@@ -32,7 +32,6 @@ function Login() {
         if (response.ok) {
          
             const userData = await response.json();
-            console.log(userData)
             if (userData.role === 'admin') {
                 navigate('/admin'); 
             } else {
@@ -46,9 +45,6 @@ function Login() {
                 console.error('Failed to login');
                 
             }
-            setTimeout(() => {
-              setErrorMessage('');
-          }, 3000)
         }
     } catch (error) {
       setErrorMessage('Error during login');

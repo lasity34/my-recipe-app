@@ -12,6 +12,7 @@
     "arch": "^2.2.0",
     "arg": "^5.0.2",
     "balanced-match": "^1.0.2",
+    "bcrypt": "^5.1.1",
     "boxen": "^7.0.0",
     "brace-expansion": "^1.1.11",
     "bytes": "^3.0.0",

@@ -32,30 +32,24 @@ function Login() {
         if (response.ok) {
          
             const userData = await response.json();
-            console.log(userData)
             if (userData.role === 'admin') {
                 navigate('/admin'); 
             } else {
                 navigate('/'); 
             }
         } else {
-            if (response.status === 401) {
+            if (response.status === 401) { // or whatever status code your backend uses for "user not found"
                 console.error('Login failed: User does not exist or wrong credentials.');
-               
+                // Optionally, set a state variable to show an error message to the user
             } else {
                 console.error('Failed to login');
-                
+                // Handle other types of login failure
             }
-            setTimeout(() => {
-              setErrorMessage('');
-          }, 3000)
         }
     } catch (error) {
-      setErrorMessage('Error during login');
-      setTimeout(() => {
-          setErrorMessage('');
-      }, 3000);
-  }
+        console.error('Error during login:', error);
+        // Handle network or other errors
+    }
 };
 
 

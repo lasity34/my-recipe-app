@@ -21,43 +21,31 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('https://boozy-benders.onrender.com/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(credentials)
-        });
+      const response = await fetch('https://boozy-benders.onrender.com/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+      });
 
-        if (response.ok) {
-         
-            const userData = await response.json();
-            console.log(userData)
-            if (userData.role === 'admin') {
-                navigate('/admin'); 
-            } else {
-                navigate('/'); 
-            }
+      if (response.ok) {
+        // Assuming the backend returns some form of user data
+        const userData = await response.json();
+        if (userData.role === 'admin') {
+          navigate('/admin'); // Redirect to admin page
         } else {
-            if (response.status === 401) {
-                console.error('Login failed: User does not exist or wrong credentials.');
-               
-            } else {
-                console.error('Failed to login');
-                
-            }
-            setTimeout(() => {
-              setErrorMessage('');
-          }, 3000)
+          navigate('/');
         }
+      } else {
+        console.error('Failed to login');
+        // Handle login failure
+      }
     } catch (error) {
-      setErrorMessage('Error during login');
-      setTimeout(() => {
-          setErrorMessage('');
-      }, 3000);
-  }
-};
-
+      console.error('Error during login:', error);
+      // Handle error
+    }
+  };
 
   return (
     <div className="login-container">

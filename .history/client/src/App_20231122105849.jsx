@@ -15,7 +15,7 @@ function LayoutWithHeader() {
       <Navbar />
       <Routes>
         <Route path="/" element={<CocktailList />} />
-        
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </>
   );
@@ -26,8 +26,9 @@ function App() {
     <Router>
       <div className="app">
         <Routes>
-          <Route path="/" element={<LayoutWithHeader />}/>
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/" element={<LayoutWithHeader />}>
+          
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
       
