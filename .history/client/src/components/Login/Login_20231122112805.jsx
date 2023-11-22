@@ -8,7 +8,7 @@ function Login() {
     username: '',
     password: ''
   });
-  const [errorMessage, setErrorMessage] = useState('');
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,7 +22,7 @@ function Login() {
     e.preventDefault();
     try {
         const response = await fetch('https://boozy-benders.onrender.com/api/login', {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
