@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3001;
 
 app.use(cors({
-  origin: 'hhttps://boozy-benders-frontend.onrender.com'
+  origin: 'https://boozy-benders-frontend.onrender.com'
 }));
 app.use(express.json());
 
