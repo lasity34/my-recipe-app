@@ -8,7 +8,7 @@ export default function Navbar() {
 
     useEffect(() => {
        
-        fetch('https://boozy-benders.onrender.com/api/countries')
+        fetch('/api/countries')
           .then(response => response.json())
           .then(data => setCountries(data));
       }, []);

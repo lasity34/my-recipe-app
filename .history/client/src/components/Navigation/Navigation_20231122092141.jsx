@@ -4,13 +4,22 @@ import "./Navigation.css";
 export default function Navbar() {
 
     const [countries, setCountries] = useState([])
- 
+    const [ ingredients, setIngredients] = useState([]);
+    const [ratings, setRatings] = useState([]);
 
     useEffect(() => {
-       
-        fetch('https://boozy-benders.onrender.com/api/countries')
+        // fetch countries
+        fetch('/api/countries')
           .then(response => response.json())
           .then(data => setCountries(data));
+    
+        // fetch ingredients
+        // fetch('/api/ingredients')
+        //   .then(response => response.json())
+        //   .then(data => setIngredients(data));
+    
+        // fetch ratings - assuming ratings are predefined, for example 1-5
+      
       }, []);
 
     return (
