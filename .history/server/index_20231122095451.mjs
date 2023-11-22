@@ -6,9 +6,7 @@ import countriesRouter from './routes/countries.js';
 const app = express();
 const PORT = 3001;
 
-app.use(cors({
-  origin: 'ttps://boozy-benders-frontend.onrender.com'
-}));
+app.use(cors());
 
 app.use(express.json());
 
