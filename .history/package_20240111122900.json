@@ -59,7 +59,6 @@
     "minimist": "^1.2.8",
     "ms": "^2.0.0",
     "negotiator": "^0.6.3",
-    "nodemon": "^3.0.2",
     "npm-run-path": "^4.0.1",
     "on-headers": "^1.0.2",
     "onetime": "^5.1.2",
@@ -92,7 +91,6 @@
     "update-check": "^1.5.4",
     "uri-js": "^4.4.1",
     "vary": "^1.1.2",
-    "vite": "^5.0.11",
     "which": "^2.0.2",
     "widest-line": "^4.0.1",
     "wrap-ansi": "^8.1.0"
@@ -101,7 +99,7 @@
     "node": ">=18.14.2"
   },
   "scripts": {
-    "start": "vite",
+    "start" : "npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

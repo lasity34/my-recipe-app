@@ -4,6 +4,9 @@
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
   "main": "index.js",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.18",
     "accepts": "^1.3.8",
     "ajv": "^8.11.0",
     "ansi-align": "^3.0.1",
@@ -12,6 +15,7 @@
     "arch": "^2.2.0",
     "arg": "^5.0.2",
     "balanced-match": "^1.0.2",
+    "bcrypt": "^5.1.1",
     "boxen": "^7.0.0",
     "brace-expansion": "^1.1.11",
     "bytes": "^3.0.0",
@@ -93,10 +97,9 @@
   },
   "engines": {
     "node": ">=18.14.2"
-  }
-,  
-  "devDependencies": {},
+  },
   "scripts": {
+    "start" : "vite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
