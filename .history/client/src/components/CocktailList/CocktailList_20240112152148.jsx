@@ -3,8 +3,7 @@ import './CocktailList.css';
 import React, { useState, useEffect } from "react";
 import CocktailCard from "../CocktailCard/CocktailCard";
 import CocktailModal from '../CocktailModal/CocktailModal';
-import { fetchCocktailDetails, fetchCocktails } from '../../api/Cocktail';
-
+import { fetchCocktailDetails, fetchCocktails } from '../../../api/cocktails';
 
 function CocktailList() {
     const [cocktails, setCocktails] = useState([]);
@@ -12,21 +11,33 @@ function CocktailList() {
     const [isModalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
-        fetchCocktails()
-            .then(data => {
-                setCocktails(data);
-            })
-            .catch(error => console.error("Error fetching cocktails:", error));
+        fetch(`https://boozy-benders.onrender.com/api/cocktails`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();  // Get the response as text first for debugging
+        })
+        .then(data => {
+            return JSON.parse(data);  // Then parse the data as JSON
+        })
+        .then(data => {
+            setCocktails(data);
+        })
+        .catch(error => console.error("Error fetching cocktails:", error));
+    
     }, []);
 
     const openModal = (cocktail) => {
-        fetchCocktailDetails(cocktail.id)
+        fetch(`https://boozy-benders.onrender.com/api/cocktails/${cocktail.id}`)
+            .then(response => response.json())
             .then(data => {
                 setSelectedCocktail(data);
                 setModalOpen(true);
             })
             .catch(error => console.error("Error fetching cocktail details:", error));
-    };
+      };
+      
 
     const closeModal = () => {
         setModalOpen(false);

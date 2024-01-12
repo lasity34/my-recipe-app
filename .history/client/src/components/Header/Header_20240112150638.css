@@ -37,16 +37,9 @@
 }
 
 .header_title {
-  margin-right: 0.5em;
-  color: #ffffff; /* Change font color to white or a light color */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for depth */
-  /* Optional: Add a semi-transparent background to the text for more contrast */
- 
-  padding: 0.2em 0.4em; /* Add some padding if you use background color */
-  border-radius: 4px; /* Optional: if using background, to make it look nicer */
-  display: inline-block; /* Needed to apply padding and background correctly */
+    margin-right: 0.5em;
+    color: #f3eded;
 }
-
 
   
   .search-container {

@@ -3,8 +3,7 @@ import './CocktailList.css';
 import React, { useState, useEffect } from "react";
 import CocktailCard from "../CocktailCard/CocktailCard";
 import CocktailModal from '../CocktailModal/CocktailModal';
-import { fetchCocktailDetails, fetchCocktails } from '../../api/Cocktail';
-
+import { fetchCocktailDetails, fetchCocktails } from '../../../api/cocktails';
 
 function CocktailList() {
     const [cocktails, setCocktails] = useState([]);
@@ -20,13 +19,15 @@ function CocktailList() {
     }, []);
 
     const openModal = (cocktail) => {
-        fetchCocktailDetails(cocktail.id)
+        fetch(`https://boozy-benders.onrender.com/api/cocktails/${cocktail.id}`)
+            .then(response => response.json())
             .then(data => {
                 setSelectedCocktail(data);
                 setModalOpen(true);
             })
             .catch(error => console.error("Error fetching cocktail details:", error));
-    };
+      };
+      
 
     const closeModal = () => {
         setModalOpen(false);

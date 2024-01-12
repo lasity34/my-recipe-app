@@ -3,8 +3,7 @@ import './CocktailList.css';
 import React, { useState, useEffect } from "react";
 import CocktailCard from "../CocktailCard/CocktailCard";
 import CocktailModal from '../CocktailModal/CocktailModal';
-import { fetchCocktailDetails, fetchCocktails } from '../../api/Cocktail';
-
+import { fetchCocktailDetails } from '../../../api/Cocktails';
 
 function CocktailList() {
     const [cocktails, setCocktails] = useState([]);
