@@ -11,19 +11,20 @@ function CocktailList() {
 
     useEffect(() => {
         fetch(`https://boozy-benders.onrender.com/api/cocktails`)
-
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();  // Directly parse the response to JSON
-            })
-            .then(data => {
-                setCocktails(data);
-         
-            })
-            .catch(error => console.error("Error fetching cocktails:", error));
-           
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();  // Get the response as text first for debugging
+        })
+        .then(data => {
+            return JSON.parse(data);  // Then parse the data as JSON
+        })
+        .then(data => {
+            setCocktails(data);
+        })
+        .catch(error => console.error("Error fetching cocktails:", error));
+    
     }, []);
 
     const openModal = (cocktail) => {
@@ -43,6 +44,7 @@ function CocktailList() {
 
     return (
         <div className="cocktail_list">
+            {console.log("CocktailList is rendering")}
             {cocktails.map(cocktail => (
                 <CocktailCard key={cocktail.id} cocktail={cocktail} onClick={() => openModal(cocktail)} />
             ))}

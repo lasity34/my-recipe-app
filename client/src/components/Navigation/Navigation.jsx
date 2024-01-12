@@ -26,26 +26,17 @@ export default function Navbar() {
           <div className="nav-child">
         <ul className="dropdown-names">
           <li className="nav-item">
-            <a href="#" className="nav-link">Countries</a>
-            <ul className="dropdown">
-              {countries.map(country => (
-                <li key={country.id} className="dropdown-item">{country.name}</li>
-              ))}
-            </ul>
+            <a href="/discover" className="nav-link">Discover</a>
+           
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link">Ingredients</a>
-            {/* <ul className="dropdown">
-              {ingredients.map(ingredient => (
-                <li key={ingredient.id} className="dropdown-item">{ingredient.name}</li>
-              ))}
-            </ul> */}
+            <a href="/my-cocktails" className="nav-link">My Cocktails</a>
           </li>
           <li className="nav-item">
-            <a href="/about" className="nav-link">Recently Added</a>
+            <a href="/about" className="nav-link">Profile</a>
           </li>
           <li className="nav-item">
-            <a href="/about" className="nav-link">Top Rated</a>
+          <a href="/login" className="auth-link">Login</a>
           </li>
         </ul>
         </div>

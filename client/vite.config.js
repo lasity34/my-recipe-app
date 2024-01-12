@@ -5,7 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173, // Set the port for the Vite server
     proxy: {
       '/api': 'https://boozy-benders.onrender.com'
     }
