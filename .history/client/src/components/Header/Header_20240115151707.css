@@ -146,15 +146,13 @@ input[type="text"]:focus {
   align-items: center;
   flex-direction: column;
   color: white;
- 
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
 }
 
 .cocktail-details h2 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-size: 2rem;
-  -webkit-text-stroke: 1px black;
-  font-weight: 700;
 }
 
 .cocktail-details img {
@@ -182,53 +180,4 @@ input[type="text"]:focus {
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
-}
-
-
-/* navigation */
-
-.navbar {
-  color: white;
-  text-align: center; /* Centers the nav items if the nav is full width */
-  width: 100%;
-}
-
-.nav-child {
-  width: 90%;
-  align-items: center; /* Centers children in the cross axis */
-}
-
-.dropdown-names {
-  display: flex;
-  justify-content: space-around;
-  list-style-type: none; /* Removes bullet points */
-  padding: 0; /* Removes default padding */
-  margin: 0; /* Removes default margin */
-}
-
-.nav-item {
-  margin: 10px 0; /* Adds space between nav items */
-}
-
-.nav-link, .auth-link {
-  color: white; /* Sets text color to white */
-  text-decoration: none; /* Removes underline from links */
-  font-size: 1.2em; /* Increase font size, adjust as needed */
-}
-
-.nav-link:hover, .auth-link:hover {
-  text-decoration: underline; /* Adds underline on hover */
-  color: #fff;
-}
-
-/* This assumes you want the logo to be centered above the nav items */
-.title_container {
-  text-align: center; /* Centers the logo */
-  margin-bottom: 20px; /* Adds space between the logo and the nav items */
-}
-
-.title_container img {
-  width: 150px; /* Adjust as needed */
-  border-radius: 50%; /* Keeps the round shape */
-  opacity: 0.9; /* Adjust as needed for the desired transparency */
 }

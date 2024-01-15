@@ -146,7 +146,7 @@ input[type="text"]:focus {
   align-items: center;
   flex-direction: column;
   color: white;
- 
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
 }
 
@@ -154,7 +154,6 @@ input[type="text"]:focus {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-size: 2rem;
   -webkit-text-stroke: 1px black;
-  font-weight: 700;
 }
 
 .cocktail-details img {
@@ -218,7 +217,6 @@ input[type="text"]:focus {
 
 .nav-link:hover, .auth-link:hover {
   text-decoration: underline; /* Adds underline on hover */
-  color: #fff;
 }
 
 /* This assumes you want the logo to be centered above the nav items */

@@ -218,7 +218,6 @@ input[type="text"]:focus {
 
 .nav-link:hover, .auth-link:hover {
   text-decoration: underline; /* Adds underline on hover */
-  color: #fff;
 }
 
 /* This assumes you want the logo to be centered above the nav items */

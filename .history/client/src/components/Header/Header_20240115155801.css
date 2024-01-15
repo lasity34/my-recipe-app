@@ -146,7 +146,7 @@ input[type="text"]:focus {
   align-items: center;
   flex-direction: column;
   color: white;
- 
+  font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
 }
 
@@ -218,7 +218,6 @@ input[type="text"]:focus {
 
 .nav-link:hover, .auth-link:hover {
   text-decoration: underline; /* Adds underline on hover */
-  color: #fff;
 }
 
 /* This assumes you want the logo to be centered above the nav items */

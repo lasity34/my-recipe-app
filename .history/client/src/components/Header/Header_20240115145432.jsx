@@ -19,36 +19,9 @@ export default function Header() {
 
   return (
     <div className="header_container">
-      <nav className="navbar">
-        <div className="nav-child">
-          <ul className="dropdown-names">
-            <li className="nav-item">
-              <a href="/discover" className="nav-link">
-                Discover
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/my-cocktails" className="nav-link">
-                My Cocktails
-              </a>
-            </li>
-            <div className="title_container">
-              <img src="./images/logo.png" alt="" />
-            </div>
-            <li className="nav-item">
-              <a href="/about" className="nav-link">
-                Profile
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="auth-link">
-                Login
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
+      <div className="title_container">
+        <img src="./images/logo.png" alt="" />
+      </div>
       <div className="cocktail-day-container">
         {cocktailOfTheDay && (
           <div className="cocktail-details">
