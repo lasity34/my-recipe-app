@@ -73,3 +73,19 @@
   90% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+.login_title_container img {
+  width: 120px;
+  opacity: 0.6;
+  border-radius: 50%;
+} 
+
+.home_login_container {
+  text-align: center;
+ 
+}
+
+.home_login_container a {
+  margin-top: 1em;
+  color: #545b62;
+}

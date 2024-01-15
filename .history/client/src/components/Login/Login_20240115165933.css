@@ -1,11 +1,11 @@
 /* Login.css */
 .login-container {
     display: flex;
-
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-  
-  
+    height: 100vh;
+    background-color: #f2f2f2; /* Light gray background */
   }
   
   .login-container form {
@@ -21,7 +21,7 @@
     text-align: center;
     margin-bottom: 20px; /* Spacing between the header and the form */
     color: #333; /* Choose a color that fits your design */
-    /* Add any additional styling you want for the header */
+  
   }
   
   .form-group {
@@ -56,3 +56,26 @@
     background-color: #545b62; /* Darker shade for hover effect */
   }
   
+  /* Existing styles... */
+
+.error-message {
+  color: red; /* Red color for error text */
+  margin-top: 10px; /* Space above the error message */
+  font-size: 0.9em; /* Smaller font size than the regular text */
+  text-align: center; /* Center the text */
+  animation: fade-in-out 3s ease-in-out; /* Animation for fading in and out */
+}
+
+/* Keyframes for the fade-in-out animation */
+@keyframes fade-in-out {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.login_title_container img {
+  width: 120px;
+  opacity: 0.8;
+  border-radius: 50%;
+} 

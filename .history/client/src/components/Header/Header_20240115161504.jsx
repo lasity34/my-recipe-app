@@ -36,12 +36,12 @@ export default function Header() {
               <img src="./images/logo.png" alt="" />
             </div>
             <li className="nav-item">
-              <a href="/signup" className="nav-link">
+              <a href="/sign-up" className="nav-link">
                 Signup
               </a>
             </li>
             <li className="nav-item">
-              <a href="/login" className="nav-link">
+              <a href="/login" className="auth-link">
                 Login
               </a>
             </li>

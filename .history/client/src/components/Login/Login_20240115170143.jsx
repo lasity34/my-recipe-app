@@ -1,52 +1,70 @@
 // Login.jsx
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
   const [credentials, setCredentials] = useState({
-    username: '',
-    password: ''
+    username: "",
+    password: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setCredentials({
       ...credentials,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://boozy-benders.onrender.com/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-      });
+      const response = await fetch(
+        "https://boozy-benders.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(credentials),
+        }
+      );
 
       if (response.ok) {
-        // Assuming the backend returns some form of user data
         const userData = await response.json();
-        if (userData.role === 'admin') {
-          navigate('/admin'); // Redirect to admin page
+        console.log(userData);
+        if (userData.role === "admin") {
+          navigate("/admin");
         } else {
-          // Handle non-admin users
+          navigate("/");
         }
       } else {
-        console.error('Failed to login');
-        // Handle login failure
+        if (response.status === 401) {
+          setErrorMessage(
+            "Login failed: User does not exist or wrong credentials."
+          );
+        } else {
+          setErrorMessage("Failed to login");
+        }
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 3000);
       }
     } catch (error) {
-      console.error('Error during login:', error);
-      // Handle error
+      setErrorMessage("Error during login");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
     }
   };
 
   return (
     <div className="login-container">
+      <div className="login_title_container">
+        <img src="./images/logo.png" alt="" />
+      </div>
       <h2 className="login-header">Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -73,9 +91,11 @@ function Login() {
         </div>
         <button type="submit">Login</button>
       </form>
+      <div>
+        <a href="/">Back at Home</a>
+      </div>
     </div>
   );
 }
 
 export default Login;
-
