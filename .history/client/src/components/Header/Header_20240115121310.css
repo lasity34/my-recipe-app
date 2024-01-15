@@ -1,0 +1,168 @@
+/* Header.css */
+
+.header_container {
+  padding: 1em 2em;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url('images/header_background-darker.png'); /* Add this line */
+  background-size: cover; /* Cover the entire space of the element */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+
+
+
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .header_profile_search_container {
+    width: 30%;
+    display: flex;
+}
+
+.title_container {
+    display: flex;
+    align-items: center;
+}
+
+.header_title {
+  margin-right: 0.5em;
+  color: #ffffff; /* Change font color to white or a light color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for depth */
+  /* Optional: Add a semi-transparent background to the text for more contrast */
+ 
+  padding: 0.2em 0.4em; /* Add some padding if you use background color */
+  border-radius: 4px; /* Optional: if using background, to make it look nicer */
+  display: inline-block; /* Needed to apply padding and background correctly */
+}
+
+
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-button {
+    border: none;
+    background: #e6846a;
+    cursor: pointer;
+    color: #fff;
+    /* Half rounded on the left for the 'Search' button */
+    padding: 10px 20px; /* Adjust the padding to meet your design needs */
+    font-size: 0.7rem; /* Adjust the font size as needed */
+    outline: none; /* Remove outline to match the design */
+    height: 40px; /* Set a fixed height */
+ 
+  }
+
+  .search-button-left {
+    border-radius: 25px 0 0 25px;
+  }
+
+  .search-button-right {
+    border-radius: 0 25px 25px 0;
+  }
+
+
+ input[type="text"] {
+  height: 40px; /* Same height as buttons */
+  width: 100%; /* Fill the width of the container */
+  padding: 10px; /* Padding inside the input field */
+  margin: 0; /* Remove any default margin */
+  border: 1px solid #decfcf; /* Add border to match buttons if necessary */
+  border-radius: 0; /* No rounded corners for the input field */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+  
+  .input,
+  .search-button {
+    padding: 0.5rem;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border: none; /* Optional: if you also want to remove any borders */
+  }
+  
+  .divider {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.5), transparent);
+    margin: 1rem 0;
+  }
+  
+  .login-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .profile-icon {
+    margin-right: 0.5rem;
+  }
+  
+  .auth-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    margin: 0 0.5em;
+  }
+  
+  .cocktail-day-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0 .25); 
+  width: fit-content; 
+  margin: auto;
+  }
+
+  .cocktail-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .cocktail-details img {
+  
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff; 
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); 
+  }
+  
+  .cocktail-title {
+  color: #333; 
+  font-size: 1.5em;
+  text-shadow: 1px 1px 2px #fff;
+  margin-top: 10px;
+  font-weight: bold; 
+  }
+  
+  
+  .title-background {
+  background: rgba(0, 0, 0, 0.5); 
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  }
