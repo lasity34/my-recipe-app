@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import  axios  from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 import "./Signup.css";
 
@@ -9,8 +8,6 @@ export default function Signup() {
     email: "",
     password: "",
   });
-
-  console.log(formData)
 
   const [error, setError] = useState(""); // State to handle error messages
   const navigate = useNavigate(); // Hook for navigation
@@ -22,17 +19,25 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(""); // Reset error message
-  
+
     try {
-      const response = await axios.post('https://boozy-benders.onrender.com/api/auth/signup', formData);
-  
+      const response = await fetch('https://boozy-benders.onrender.com/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
       if (response.status === 201) {
         navigate('/'); // Redirect to home on successful signup
       } else {
-        setError('Signup failed'); // Set error message
+        setError(data.error || 'Signup failed'); // Set error message
       }
     } catch (error) {
-      setError(error.response?.data?.error || 'Network error'); // Set error for network issues or API errors
+      setError('Network error'); // Set error for network issues
     }
   };
 

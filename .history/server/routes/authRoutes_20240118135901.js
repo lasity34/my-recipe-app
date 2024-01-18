@@ -73,7 +73,7 @@ router.get('/admins', authenticateUser, checkAdmin, async (req, res) => {
 router.post('/signup', async (req, res) => {
   console.log(req.body)
   const { username, email, password } = req.body; // Include email
-
+  console.log()
   try {
     // Check if user already exists
     const existingUser = await query('SELECT * FROM users WHERE username = $1 OR email = $2', [username, email]);

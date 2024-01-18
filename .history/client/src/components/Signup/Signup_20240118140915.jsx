@@ -24,7 +24,7 @@ export default function Signup() {
     setError(""); // Reset error message
   
     try {
-      const response = await axios.post('https://boozy-benders.onrender.com/api/auth/signup', formData);
+      const response = await axios.post('https://boozy-benders.onrender.com/api/auth/sign', formData);
   
       if (response.status === 201) {
         navigate('/'); // Redirect to home on successful signup

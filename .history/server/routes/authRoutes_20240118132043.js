@@ -71,7 +71,6 @@ router.get('/admins', authenticateUser, checkAdmin, async (req, res) => {
 
 
 router.post('/signup', async (req, res) => {
-  console.log(req.body)
   const { username, email, password } = req.body; // Include email
 
   try {
@@ -91,10 +90,9 @@ router.post('/signup', async (req, res) => {
 
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    console.error('Signup error:', error.message, error.stack);
-    res.status(500).json({ error: 'Internal server error', details: error.message });
+    console.error('Signup error', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
-  
 });
 
 
