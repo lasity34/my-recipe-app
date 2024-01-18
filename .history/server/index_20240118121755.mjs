@@ -3,6 +3,7 @@ import { query } from "./db.mjs";
 import cors from 'cors';
 import cocktailsRouter from './routes/cocktails.js'; 
 import countriesRouter from './routes/countries.js';
+import authRouter from './routes/authRoutes.js';
 const app = express();
 const PORT = 3001;
 
@@ -26,30 +27,34 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
-
+app.use(logResponseTime);
 
 app.use('/api/cocktails', cocktailsRouter);
 app.use('/api/countries', countriesRouter); 
 
-  app.get('/api/countries', async (req, res) => {
-    try {
-      const result = await query('SELECT * FROM countries;');
-      res.json(result.rows);
-    } catch (error) {
-      console.error('Error retrieving countries', error);
-      res.status(500).json({ error: 'Error retrieving countries' });
-    }
-  });
-  
+  app.use('/api/auth', authRouter);
 
 
-app.post('/api/registration', (req, res) => {
-    res.json({ message: "Register a new user"})
-})
+  function logResponseTime(req, res, next) {
+    const start = process.hrtime();
 
-app.post('/api/login', (req, res) => {
-    res.json({ message: "Login a user"})
-})
+    res.on('finish', () => {
+        const durationInMilliseconds = getDurationInMilliseconds(start);
+        console.log(`${req.method} ${req.originalUrl} [${durationInMilliseconds}ms]`);
+    });
+
+    next();
+}
+
+function getDurationInMilliseconds(start) {
+    const NS_PER_SEC = 1e9;
+    const NS_TO_MS = 1e-6;
+    const diff = process.hrtime(start);
+
+    return (diff[0] * NS_PER_SEC + diff[1]) * NS_TO_MS;
+}
+
+
 
 app.listen(PORT, () => {
     console.log(`listening to PORT ${PORT}`)

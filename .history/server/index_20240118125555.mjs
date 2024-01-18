@@ -31,23 +31,10 @@ app.use(express.json());
 
 app.use('/api/cocktails', cocktailsRouter);
 app.use('/api/countries', countriesRouter); 
-
-  app.get('/api/countries', async (req, res) => {
-    try {
-      const result = await query('SELECT * FROM countries;');
-      res.json(result.rows);
-    } catch (error) {
-      console.error('Error retrieving countries', error);
-      res.status(500).json({ error: 'Error retrieving countries' });
-    }
-  });
-  
-  app.use('/api/auth', authRouter);
+app.use('/api/auth', authRouter);
 
 
-app.post('/api/registration', (req, res) => {
-    res.json({ message: "Register a new user"})
-})
+
 
 
 app.listen(PORT, () => {

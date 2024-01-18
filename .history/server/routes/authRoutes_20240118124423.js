@@ -26,6 +26,26 @@ const checkAdmin = (req, res, next) => {
   }
 };
 
+
+router.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const result = await query('SELECT * FROM users WHERE username = $1', [username]);
+    
+    const user = result.rows[0]; // Assuming the query returns an array of rows
+    console.log(user)
+    if (user && bcrypt.compareSync(password, user.password)) {
+      // User is authenticated, return user data including their role
+      res.json({ username: user.username, role: user.role });
+    } else {
+      res.status(401).json({ error: 'Invalid credentials' });
+    }
+  } catch (error) {
+    console.error('Login error', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // Route for users
 router.get('/users', authenticateUser, async (req, res) => {
   try {
@@ -45,6 +65,31 @@ router.get('/admins', authenticateUser, checkAdmin, async (req, res) => {
   } catch (error) {
     console.error('Error retrieving admins', error);
     res.status(500).json({ error: 'Error retrieving admins' });
+  }
+});
+
+
+
+router.post('/signup', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Check if user already exists
+    const existingUser = await query('SELECT * FROM users WHERE username = $1', [username]);
+    if (existingUser.rows.length) {
+      return res.status(409).json({ error: 'User already exists' });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert the new user into the database
+    await query('INSERT INTO users (username, password) VALUES ($1, $2)', [username, hashedPassword]);
+
+    res.status(201).json({ message: 'User created successfully' });
+  } catch (error) {
+    console.error('Signup error', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 

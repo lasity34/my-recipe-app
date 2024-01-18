@@ -68,4 +68,29 @@ router.get('/admins', authenticateUser, checkAdmin, async (req, res) => {
   }
 });
 
+
+
+router.post('/signup', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Check if user already exists
+    const existingUser = await query('SELECT * FROM users WHERE username = $1', [username]);
+    if (existingUser.rows.length) {
+      return res.status(409).json({ error: 'User already exists' });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert the new user into the database
+    await query('INSERT INTO users (username, password) VALUES ($1, $2)', [username, hashedPassword]);
+
+    res.status(201).json({ message: 'User created successfully' });
+  } catch (error) {
+    console.error('Signup error', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 export default router;

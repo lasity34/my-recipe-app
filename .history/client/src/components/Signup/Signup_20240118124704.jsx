@@ -21,7 +21,7 @@ export default function Signup() {
 
   return (
     <div className="signup-container">
-      <h2 className="signup-header">Sign Up</h2> {/* Title for the signup form */}
+      <h2 className="signup-header">Sign Up</h2> 
       <form onSubmit={handleSubmit}>
         <input
           type="text"
