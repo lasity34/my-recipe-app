@@ -225,7 +225,7 @@ input[type="text"]:focus {
 .title_container {
   text-align: center; /* Centers the logo */
   margin-bottom: 20px; /* Adds space between the logo and the nav items */
-  margin-right: 5em;
+  margin-right: 3em;
 }
 
 .title_container img {

@@ -200,7 +200,7 @@ input[type="text"]:focus {
 
 .dropdown-names {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   list-style-type: none; /* Removes bullet points */
   padding: 0; /* Removes default padding */
   margin: 0; /* Removes default margin */
@@ -225,7 +225,6 @@ input[type="text"]:focus {
 .title_container {
   text-align: center; /* Centers the logo */
   margin-bottom: 20px; /* Adds space between the logo and the nav items */
-  margin-right: 5em;
 }
 
 .title_container img {
