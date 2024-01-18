@@ -8,12 +8,10 @@ const PORT = 3001;
 
 const corsOptions = {
   origin: (origin, callback) => {
-    const allowedOrigins = [
-      'http://localhost:5173', 
-      'http://localhost:3000', // Frontend running on port 3000
-      'https://boozy-benders-frontend.onrender.com'
-    ];
-
+    // List of allowed origins (both local and production)
+    const allowedOrigins = ['http://localhost:5173', 'https://boozy-benders-frontend.onrender.com'];
+    
+    // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
     if (allowedOrigins.indexOf(origin) === -1) {
@@ -23,7 +21,6 @@ const corsOptions = {
     return callback(null, true);
   }
 };
-
 
 app.use(cors(corsOptions));
 app.use(express.json());
