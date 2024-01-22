@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const result = await query('SELECT * FROM cocktails;');
+    console.log(result)
     res.json(result.rows);
   } catch (error) {
     console.error('Error retrieving cocktails', error);
@@ -44,13 +45,11 @@ router.post('/', async (req, res) => {
   }
 });
 
-
-// POST a new cocktail
-router.post('/', async (req, res) => {
+router.post('/with-ingredients', async (req, res) => {
   const { title, description, type, country_name, rating_average, image_url, ingredients } = req.body;
 
   try {
-    // First, get the country ID from the country name
+    // Get country ID
     const countryResult = await query('SELECT id FROM countries WHERE name = $1', [country_name]);
     if (countryResult.rows.length === 0) {
       return res.status(404).json({ error: 'Country not found' });
@@ -64,13 +63,16 @@ router.post('/', async (req, res) => {
       RETURNING id;
     `;
     const cocktailResult = await query(cocktailSql, [title, description, type, country_id, rating_average, image_url]);
+    if (cocktailResult.rows.length === 0) {
+      throw new Error('Failed to insert cocktail');
+    }
     const cocktailId = cocktailResult.rows[0].id;
 
-    // Insert each ingredient
+    // Insert ingredients
     for (const ingredient of ingredients) {
       const ingredientResult = await query('SELECT id FROM ingredients WHERE name = $1', [ingredient.name]);
       if (ingredientResult.rows.length === 0) {
-        continue; // Skip if ingredient not found, or handle error
+        throw new Error(`Ingredient not found: ${ingredient.name}`);
       }
       const ingredientId = ingredientResult.rows[0].id;
 
@@ -81,13 +83,30 @@ router.post('/', async (req, res) => {
       await query(cocktailIngredientsSql, [cocktailId, ingredientId, ingredient.quantity]);
     }
 
-    // Return the created cocktail
-    res.status(201).json({ message: 'Cocktail added successfully', cocktailId: cocktailId });
+    // Fetch the newly created cocktail
+    const fetchCocktailSql = `
+      SELECT c.id, c.title, c.description, c.type, co.name AS country_name, c.rating_average, c.image_url, 
+             json_agg(json_build_object('name', i.name, 'quantity', ci.quantity)) as ingredients
+      FROM cocktails c
+      LEFT JOIN cocktail_ingredients ci ON c.id = ci.cocktail_id
+      LEFT JOIN ingredients i ON ci.ingredient_id = i.id
+      LEFT JOIN countries co ON c.country_id = co.id
+      WHERE c.id = $1
+      GROUP BY c.id, co.name;
+    `;
+    const newCocktail = await query(fetchCocktailSql, [cocktailId]);
+    if (newCocktail.rows.length > 0) {
+      res.status(201).json(newCocktail.rows[0]);
+    } else {
+      throw new Error('New cocktail details could not be fetched');
+    }
   } catch (error) {
-    console.error('Error adding new cocktail', error);
-    res.status(500).json({ error: 'Error adding new cocktail' });
+    res.status(500).json({ error: 'Error adding new cocktail', details: error.message });
   }
 });
+
+
+
 
 
 
@@ -95,13 +114,21 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   const sql = `
-    SELECT c.id, c.title, c.description, c.type, c.country_id, c.rating_average, c.image_url, 
-           json_agg(json_build_object('name', i.name, 'quantity', ci.quantity)) as ingredients
+    SELECT 
+      c.id, 
+      c.title, 
+      c.description, 
+      c.type, 
+      co.name AS country_name, 
+      c.rating_average, 
+      c.image_url, 
+      json_agg(json_build_object('name', i.name, 'quantity', ci.quantity)) as ingredients
     FROM cocktails c
     LEFT JOIN cocktail_ingredients ci ON c.id = ci.cocktail_id
     LEFT JOIN ingredients i ON ci.ingredient_id = i.id
+    LEFT JOIN countries co ON c.country_id = co.id
     WHERE c.id = $1
-    GROUP BY c.id;
+    GROUP BY c.id, co.name, c.title, c.description, c.type, c.rating_average, c.image_url
   `;
 
   try {
@@ -116,20 +143,21 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+
 // PATCH (update) a cocktail
 router.patch('/:id', async (req, res) => {
   const { id } = req.params;
-  const { title, description, type, country_id, ingredients } = req.body;
+  const { title, description, type, country_name, ingredients } = req.body;
 
   const updateCocktailSql = `
     UPDATE cocktails 
-    SET title = $1, description = $2, type = $3, country_id = $4 
+    SET title = $1, description = $2, type = $3, country_id = (SELECT id FROM countries WHERE name = $4)
     WHERE id = $5 
     RETURNING *;
   `;
 
   try {
-    const cocktailResult = await query(updateCocktailSql, [title, description, type, country_id, id]);
+    const cocktailResult = await query(updateCocktailSql, [title, description, type, country_name, id]);
     if (cocktailResult.rows.length === 0) {
       return res.status(404).json({ error: 'Cocktail not found' });
     }
@@ -142,6 +170,7 @@ router.patch('/:id', async (req, res) => {
     res.status(500).json({ error: 'Error updating cocktail' });
   }
 });
+
 
 
 

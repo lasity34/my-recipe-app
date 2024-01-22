@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import  axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 import "./Signup.css";
-import { signupUser } from "../../api/Cocktail";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -33,6 +32,7 @@ export default function Signup() {
     }
   };
 
+  
   return (
     <div className="signup-container">
       <h2 className="signup-header">Sign Up</h2> 

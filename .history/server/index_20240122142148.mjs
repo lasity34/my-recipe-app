@@ -47,8 +47,8 @@ app.use(express.json());
 
 
 
-app.use('/api/cocktails', cocktailsRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/cocktails', cocktailsRouter);
 
 
 

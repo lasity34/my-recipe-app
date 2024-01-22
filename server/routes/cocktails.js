@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const result = await query('SELECT * FROM cocktails;');
+    console.log(result)
     res.json(result.rows);
   } catch (error) {
     console.error('Error retrieving cocktails', error);

@@ -1,24 +1,23 @@
 // api/cocktails.js
-import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://boozy-benders.onrender.com/api";
 
 export const fetchCocktails = () => {
-    return axios.get(`${BASE_URL}/cocktails`)
-        .then(response => response.data)
-        .catch(error => {
-            console.log("Error fetching cocktails:", error);
-            throw error;
+    console.log("Base URL:", import.meta.env.VITE_API_BASE_URL);
+
+    return fetch(`${BASE_URL}/cocktails`)
+    
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
         });
 };
 
 export const fetchCocktailDetails = (id) => {
-    return axios.get(`${BASE_URL}/cocktails/${id}`)
-        .then(response => response.data)
-        .catch(error => {
-            console.log("Error fetching cocktail details:", error);
-            throw error;
-        });
+    return fetch(`${BASE_URL}/cocktails/${id}`)
+        .then(response => response.json());
 };
 
 export const signupUser = async (formData) => {
