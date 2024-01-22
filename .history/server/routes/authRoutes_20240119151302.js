@@ -53,8 +53,7 @@ router.post('/signup', async (req, res) => {
 
     res.status(201).json({ message: 'User successfully registered', username: username });
   } catch (error) {
-    console.error('Signup error', error.message, error.stack);
-
+    console.error('Signup error', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });

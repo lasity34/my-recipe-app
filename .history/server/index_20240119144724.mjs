@@ -9,7 +9,7 @@ const app = express();
 const PORT = 3001;
 
 const sessionConfig = {
-  secret: process.env.SESSON_SECRET_KEY, // Use a strong secret key
+  secret: 'yourSecretKey', // Use a strong secret key
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -47,9 +47,9 @@ app.use(express.json());
 
 
 
-app.use('/api/auth', authRouter);
 app.use('/api/cocktails', cocktailsRouter);
 app.use('/api/countries', countriesRouter); 
+app.use('/api/auth', authRouter);
 
 
 

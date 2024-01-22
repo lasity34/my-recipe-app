@@ -27,38 +27,9 @@ const checkAdmin = (req, res, next) => {
 };
 
 router.post('/signup', async (req, res) => {
-  const { username, email, password } = req.body;
-  try {
-    // Check if user already exists
-    const existingUser = await query('SELECT * FROM users WHERE username = $1 OR email = $2', [username, email]);
-    if (existingUser.rows.length > 0) {
-      return res.status(409).json({ error: 'Username or email already exists' });
-    }
-
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Insert the new user into the database
-    await query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3)', [username, email, hashedPassword]);
-
-    // Retrieve new user information for session
-    const result = await query('SELECT * FROM users WHERE username = $1', [username]);
-    const newUser = result.rows[0];
-
-    // Set session information
-    if (newUser) {
-      req.session.userId = newUser.id;
-      req.session.username = newUser.username;
-    }
-
-    res.status(201).json({ message: 'User successfully registered', username: username });
-  } catch (error) {
-    console.error('Signup error', error.message, error.stack);
-
-    res.status(500).json({ error: 'Internal server error' });
-  }
+  console.log("Request received");
+  res.status(200).json({ message: 'Route reached' });
 });
-
 
 
 

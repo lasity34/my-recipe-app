@@ -28,7 +28,6 @@ export default function Signup() {
     if (response.status === 201) {
       navigate('/'); // Redirect to home on successful signup
     } else {
-      console.log("Response from server:", response);
       setError('Signup failed'); // Set error message
     }
   } catch (error) {

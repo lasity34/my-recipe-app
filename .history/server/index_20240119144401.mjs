@@ -4,23 +4,8 @@ import cocktailsRouter from './routes/cocktails.js';
 import countriesRouter from './routes/countries.js';
 import authRouter from './routes/authRoutes.js';
 import session from 'express-session';
-import 'dotenv/config';
 const app = express();
 const PORT = 3001;
-
-const sessionConfig = {
-  secret: process.env.SESSON_SECRET_KEY, // Use a strong secret key
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24, // 1 day (in milliseconds)
-    secure: false, // Set to true if using HTTPS
-    httpOnly: true // Mitigates XSS attacks by not allowing JS to access the cookie
-  }
-};
-
-app.use(session(sessionConfig));
-
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -47,9 +32,9 @@ app.use(express.json());
 
 
 
-app.use('/api/auth', authRouter);
 app.use('/api/cocktails', cocktailsRouter);
 app.use('/api/countries', countriesRouter); 
+app.use('/api/auth', authRouter);
 
 
 

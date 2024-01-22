@@ -17,26 +17,40 @@ export default function Signup() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError(""); // Reset error message
-
-  try {
-    const response = await axios.post('https://boozy-benders.onrender.com/api/auth/signup', formData);
-    if (response.status === 201) {
-      navigate('/'); // Redirect to home on successful signup
-    } else {
-      console.log("Response from server:", response);
-      setError('Signup failed'); // Set error message
+    e.preventDefault();
+    setError(""); // Reset error message
+  
+    try {
+      const response = await axios.post('https://boozy-benders.onrender.com/api/auth/signup', formData);
+  
+      if (response.status === 201) {
+        navigate('/'); // Redirect to home on successful signup
+      } else {
+        setError('Signup failed'); // Set error message
+      }
+    } catch (error) {
+      console.log(error); // Log the entire error object for debugging
+  
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log("Data:", error.response.data);
+        console.log("Status:", error.response.status);
+        console.log("Headers:", error.response.headers);
+  
+        setError(error.response.data.error || 'Signup failed');
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log("Request:", error.request);
+        setError('No response from server');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error Message:", error.message);
+        setError(error.message);
+      }
     }
-  } catch (error) {
-    console.log(error); // This should log the entire error object
-    setError(error.response?.data?.error || 'Network error'); // Set error for network issues or API errors
-  }
-};
-
+  };
   
 
   return (

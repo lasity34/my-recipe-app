@@ -18,26 +18,22 @@ export default function Signup() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError(""); // Reset error message
-
-  try {
-    const response = await axios.post('https://boozy-benders.onrender.com/api/auth/signup', formData);
-    if (response.status === 201) {
-      navigate('/'); // Redirect to home on successful signup
-    } else {
-      console.log("Response from server:", response);
-      setError('Signup failed'); // Set error message
-    }
-  } catch (error) {
-    console.log(error); // This should log the entire error object
-    setError(error.response?.data?.error || 'Network error'); // Set error for network issues or API errors
-  }
-};
-
+    e.preventDefault();
+    setError(""); // Reset error message
   
+    try {
+      const response = await axios.post('https://boozy-benders.onrender.com/api/auth/signup', formData);
+  
+      if (response.status === 201) {
+        navigate('/'); // Redirect to home on successful signup
+      } else {
+        setError('Signup failed'); // Set error message
+      }
+    } catch (error) {
+      setError(error.response?.data?.error || 'Network error'); // Set error for network issues or API errors
+    }
+  };
 
   return (
     <div className="signup-container">

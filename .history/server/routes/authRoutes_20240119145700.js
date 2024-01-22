@@ -41,24 +41,16 @@ router.post('/signup', async (req, res) => {
     // Insert the new user into the database
     await query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3)', [username, email, hashedPassword]);
 
-    // Retrieve new user information for session
-    const result = await query('SELECT * FROM users WHERE username = $1', [username]);
-    const newUser = result.rows[0];
+   
+    req.session.userId = newUser.id;
+    req.session.username = username;
 
-    // Set session information
-    if (newUser) {
-      req.session.userId = newUser.id;
-      req.session.username = newUser.username;
-    }
-
-    res.status(201).json({ message: 'User successfully registered', username: username });
+    res.status(201).json({ message: 'User successfully registered' });
   } catch (error) {
-    console.error('Signup error', error.message, error.stack);
-
+    console.error('Signup error', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
-
 
 
 

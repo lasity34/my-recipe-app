@@ -4,12 +4,11 @@ import cocktailsRouter from './routes/cocktails.js';
 import countriesRouter from './routes/countries.js';
 import authRouter from './routes/authRoutes.js';
 import session from 'express-session';
-import 'dotenv/config';
 const app = express();
 const PORT = 3001;
 
 const sessionConfig = {
-  secret: process.env.SESSON_SECRET_KEY, // Use a strong secret key
+  secret: 'yourSecretKey', // Use a strong secret key
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -47,9 +46,9 @@ app.use(express.json());
 
 
 
-app.use('/api/auth', authRouter);
 app.use('/api/cocktails', cocktailsRouter);
 app.use('/api/countries', countriesRouter); 
+app.use('/api/auth', authRouter);
 
 
 
