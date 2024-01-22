@@ -186,62 +186,50 @@ input[type="text"]:focus {
 
 
 /* navigation */
+
 .navbar {
-  display: flex;
-  justify-content: space-around; /* Distribute space between and around content items */
-  align-items: center; /* Center items vertically */
   color: white;
+  text-align: center; /* Centers the nav items if the nav is full width */
   width: 100%;
 }
 
 .nav-child {
-  display: flex; /* Added to align the items in a row */
-  flex: 1; /* Each child takes equal width */
-  justify-content: center; /* Center items horizontally */
-  align-items: center; /* Center items vertically */
+  width: 90%;
+  align-items: center; /* Centers children in the cross axis */
 }
 
-/* Left and Right Navigation Groups */
-.nav-group {
+.dropdown-names {
   display: flex;
-  width: 100%;
+  justify-content: space-evenly;
   list-style-type: none; /* Removes bullet points */
   padding: 0; /* Removes default padding */
   margin: 0; /* Removes default margin */
-  justify-content: space-around
-}
-
-/* Center (Logo) */
-.title_container {
-  display: flex; /* Enable Flexbox */
-  justify-content: center; /* Center the logo */
-  flex-grow: 1; /* Allow the logo to take up as much space as needed */
 }
 
 .nav-item {
-  margin: 10px; /* Adjust margins as needed */
+  margin: 10px 0; /* Adds space between nav items */
 }
 
 .nav-link, .auth-link {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2em;
+  color: white; /* Sets text color to white */
+  text-decoration: none; /* Removes underline from links */
+  font-size: 1.2em; /* Increase font size, adjust as needed */
 }
 
 .nav-link:hover, .auth-link:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Adds underline on hover */
   color: #fff;
 }
 
 .nav-item span:hover {
-  text-decoration: none;
+  text-decoration: none
 }
 
 /* This assumes you want the logo to be centered above the nav items */
 .title_container {
   text-align: center; /* Centers the logo */
- 
- 
+  margin-bottom: 20px; /* Adds space between the logo and the nav items */
+  margin-right: 5em;
 }
 
 .title_container img {

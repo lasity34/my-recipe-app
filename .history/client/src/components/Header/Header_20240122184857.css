@@ -204,11 +204,10 @@ input[type="text"]:focus {
 /* Left and Right Navigation Groups */
 .nav-group {
   display: flex;
-  width: 100%;
   list-style-type: none; /* Removes bullet points */
   padding: 0; /* Removes default padding */
   margin: 0; /* Removes default margin */
-  justify-content: space-around
+  justify-content: center; /* Center items in the group */
 }
 
 /* Center (Logo) */
@@ -240,7 +239,7 @@ input[type="text"]:focus {
 /* This assumes you want the logo to be centered above the nav items */
 .title_container {
   text-align: center; /* Centers the logo */
- 
+  margin-bottom: 20px; /* Adds space between the logo and the nav items */
  
 }
 

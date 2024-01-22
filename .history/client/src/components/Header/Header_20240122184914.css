@@ -204,11 +204,10 @@ input[type="text"]:focus {
 /* Left and Right Navigation Groups */
 .nav-group {
   display: flex;
-  width: 100%;
   list-style-type: none; /* Removes bullet points */
   padding: 0; /* Removes default padding */
   margin: 0; /* Removes default margin */
-  justify-content: space-around
+  justify-content: center; /* Center items in the group */
 }
 
 /* Center (Logo) */
