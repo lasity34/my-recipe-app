@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { checkAuth, logoutUser } from '../api/Cocktail'; // Ensure this path is correct
+import { checkAuth } from '../api/Cocktail'; // Ensure this path is correct
 
 export const AuthContext = createContext(null);
 
@@ -10,13 +10,8 @@ export const AuthProvider = ({ children }) => {
     setUser(username);
   };
 
-  const logout = async () => {
-    try {
-      await logoutUser(); // Call the API to invalidate the session on the server
-      setUser(null); // Then clear the user from the frontend state
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
+  const logout = () => {
+    setUser(null);
   };
 
   useEffect(() => {

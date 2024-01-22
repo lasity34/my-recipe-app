@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../api/Cocktail";
-import { useAuth } from "../../context/AuthContext";
+import { login } from "../../context/AuthContext";
 import "./Login.css";
 
 function Login() {
@@ -18,9 +18,6 @@ function Login() {
       [e.target.name]: e.target.value,
     });
   };
-
-  
-  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

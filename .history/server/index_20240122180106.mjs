@@ -29,18 +29,14 @@ const corsOptions = {
       'https://boozy-benders-frontend.onrender.com'
     ];
 
-    if (!origin) {
-      return callback(null, true); // Allow requests with no origin (like mobile apps or curl requests)
-    }
+    if (!origin) return callback(null, true);
     
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true); // Allow the specified origins
-    } else {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+    if (allowedOrigins.indexOf(origin) === -1) {
+      var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
-  },
-  credentials: true, // Enable credentials
+    return callback(null, true);
+  }
 };
 
 app.use(express.static('build'));

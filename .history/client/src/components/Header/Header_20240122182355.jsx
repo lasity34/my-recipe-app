@@ -3,17 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./Header.css";
 import { fetchCocktails } from "../../api/Cocktail";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth, logout } from "../../context/AuthContext";
 
 export default function Header() {
   const [cocktailOfTheDay, setCocktailOfTheDay] = useState(null);
-  const { user, logout } = useAuth();
-
-  const handleLogout = () => {
-    logout(); // Call the logout function from your Auth context
-    navigate('/'); // Optionally redirect the user to the home page or login page
-  };
-
+  const { user } = useAuth();
   useEffect(() => {
     fetchCocktails()
       .then((cocktails) => {
@@ -46,9 +40,6 @@ export default function Header() {
             <>
               <li className="nav-item">
                 <a href="/profile" className="nav-link">Profile</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" onClick={handleLogout}>Logout</a>
               </li>
               <li className="nav-item">
                 <span className="nav-link">Welcome {user}</span>

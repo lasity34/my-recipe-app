@@ -4,7 +4,27 @@ import { query } from '../db.mjs';
 
 const router = express.Router();
 
+// Middleware for authentication (simplified example)
+const authenticateUser = async (req, res, next) => {
+  const { username, password } = req.body;
+  // Retrieve user from database
+  const user = await query('SELECT * FROM users WHERE username = $1', [username]);
+  if (user && bcrypt.compareSync(password, user.password)) {
+    req.user = user;
+    next();
+  } else {
+    res.status(401).json({ error: 'Unauthorized' });
+  }
+};
+
 // Middleware for checking if the user is an admin
+const checkAdmin = (req, res, next) => {
+  if (req.user && req.user.role === 'admin') {
+    next();
+  } else {
+    res.status(403).json({ error: 'Access denied' });
+  }
+};
 
 router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
@@ -64,8 +84,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-
-
 // Assuming you're using express-session or a similar package for session handling
 router.get('/check-auth', (req, res) => {
   if (req.session && req.session.userId) {
@@ -79,16 +97,6 @@ router.get('/check-auth', (req, res) => {
   }
 });
 
-// In your authRoutes.js or a similar file
-router.post('/logout', (req, res) => {
-  req.session.destroy(err => {
-    if (err) {
-      res.status(500).send('Could not log out, please try again');
-    } else {
-      res.send('Logout successful');
-    }
-  });
-});
 
 
 

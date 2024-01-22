@@ -54,24 +54,3 @@ export const loginUser = async (credentials) => {
         throw error; // Re-throw the error to be handled where loginUser is called
     }
 };
-
-
-
-export const logoutUser = async () => {
-    return axios.post(`${BASE_URL}/auth/logout`)
-        .then(response => response.data)
-        .catch(error => {
-            console.log("Error during logout:", error);
-            throw error;
-        });
-};
-
-export const checkAuth = async () => {
-    return await axios.get(`${BASE_URL}/auth/check-auth`)
-        .then(response => response.data)
-        .catch(error => {
-            console.log("Error checking auth status:", error);
-            throw error;
-        });
-};
-

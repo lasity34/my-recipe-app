@@ -55,17 +55,6 @@ export const loginUser = async (credentials) => {
     }
 };
 
-
-
-export const logoutUser = async () => {
-    return axios.post(`${BASE_URL}/auth/logout`)
-        .then(response => response.data)
-        .catch(error => {
-            console.log("Error during logout:", error);
-            throw error;
-        });
-};
-
 export const checkAuth = async () => {
     return await axios.get(`${BASE_URL}/auth/check-auth`)
         .then(response => response.data)
@@ -74,4 +63,3 @@ export const checkAuth = async () => {
             throw error;
         });
 };
-

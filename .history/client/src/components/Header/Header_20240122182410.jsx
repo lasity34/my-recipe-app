@@ -8,12 +8,6 @@ import { useAuth } from "../../context/AuthContext";
 export default function Header() {
   const [cocktailOfTheDay, setCocktailOfTheDay] = useState(null);
   const { user, logout } = useAuth();
-
-  const handleLogout = () => {
-    logout(); // Call the logout function from your Auth context
-    navigate('/'); // Optionally redirect the user to the home page or login page
-  };
-
   useEffect(() => {
     fetchCocktails()
       .then((cocktails) => {
@@ -46,9 +40,6 @@ export default function Header() {
             <>
               <li className="nav-item">
                 <a href="/profile" className="nav-link">Profile</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" onClick={handleLogout}>Logout</a>
               </li>
               <li className="nav-item">
                 <span className="nav-link">Welcome {user}</span>

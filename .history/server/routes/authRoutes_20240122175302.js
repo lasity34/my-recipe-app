@@ -64,8 +64,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-
-
 // Assuming you're using express-session or a similar package for session handling
 router.get('/check-auth', (req, res) => {
   if (req.session && req.session.userId) {
@@ -79,16 +77,6 @@ router.get('/check-auth', (req, res) => {
   }
 });
 
-// In your authRoutes.js or a similar file
-router.post('/logout', (req, res) => {
-  req.session.destroy(err => {
-    if (err) {
-      res.status(500).send('Could not log out, please try again');
-    } else {
-      res.send('Logout successful');
-    }
-  });
-});
 
 
 

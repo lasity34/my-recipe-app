@@ -19,9 +19,6 @@ function Login() {
     });
   };
 
-  
-  const { login } = useAuth();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

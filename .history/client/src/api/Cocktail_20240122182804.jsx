@@ -55,6 +55,14 @@ export const loginUser = async (credentials) => {
     }
 };
 
+export const checkAuth = async () => {
+    return await axios.get(`${BASE_URL}/auth/check-auth`)
+        .then(response => response.data)
+        .catch(error => {
+            console.log("Error checking auth status:", error);
+            throw error;
+        });
+};
 
 
 export const logoutUser = async () => {
@@ -65,13 +73,3 @@ export const logoutUser = async () => {
             throw error;
         });
 };
-
-export const checkAuth = async () => {
-    return await axios.get(`${BASE_URL}/auth/check-auth`)
-        .then(response => response.data)
-        .catch(error => {
-            console.log("Error checking auth status:", error);
-            throw error;
-        });
-};
-

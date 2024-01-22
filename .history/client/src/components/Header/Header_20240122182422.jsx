@@ -48,9 +48,6 @@ export default function Header() {
                 <a href="/profile" className="nav-link">Profile</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" onClick={handleLogout}>Logout</a>
-              </li>
-              <li className="nav-item">
                 <span className="nav-link">Welcome {user}</span>
               </li>
             </>
