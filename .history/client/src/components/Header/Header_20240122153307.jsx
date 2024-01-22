@@ -8,6 +8,7 @@ import { useAuth } from "../../context/AuthContext";
 export default function Header() {
   const [cocktailOfTheDay, setCocktailOfTheDay] = useState(null);
   const { user } = useAuth();
+console.log(user)
   useEffect(() => {
     fetchCocktails()
       .then((cocktails) => {
@@ -42,7 +43,7 @@ export default function Header() {
                 <a href="/profile" className="nav-link">Profile</a>
               </li>
               <li className="nav-item">
-                <span className="nav-link">Welcome {user}</span>
+                <span className="nav-link">Welcome {user.username}</span>
               </li>
             </>
           ) : (

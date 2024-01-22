@@ -7,7 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 
 export default function Header() {
   const [cocktailOfTheDay, setCocktailOfTheDay] = useState(null);
-  const { user } = useAuth();
+
   useEffect(() => {
     fetchCocktails()
       .then((cocktails) => {
@@ -36,25 +36,16 @@ export default function Header() {
             <div className="title_container">
               <img src="./images/logo.png" alt="" />
             </div>
-            {user ? (
-            <>
-              <li className="nav-item">
-                <a href="/profile" className="nav-link">Profile</a>
-              </li>
-              <li className="nav-item">
-                <span className="nav-link">Welcome {user}</span>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className="nav-item">
-                <a href="/signup" className="nav-link">Signup</a>
-              </li>
-              <li className="nav-item">
-                <a href="/login" className="nav-link">Login</a>
-              </li>
-            </>
-          )}
+            <li className="nav-item">
+              <a href="/signup" className="nav-link">
+                Signup
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="/login" className="nav-link">
+                Login
+              </a>
+            </li>
           </ul>
       
       </nav>

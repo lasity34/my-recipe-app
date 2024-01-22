@@ -38,7 +38,7 @@ export default function Signup() {
   return (
     <div className="signup-container">
       <h2 className="signup-header">Sign Up</h2> 
-      {error && <p className="error-message">{error}</p>}
+      {error && <p className="error-message">{error}</p>} {/* Display error message */}
       <form onSubmit={handleSubmit}>
         <input
           type="text"

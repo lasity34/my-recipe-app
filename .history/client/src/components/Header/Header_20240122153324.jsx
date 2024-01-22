@@ -8,6 +8,7 @@ import { useAuth } from "../../context/AuthContext";
 export default function Header() {
   const [cocktailOfTheDay, setCocktailOfTheDay] = useState(null);
   const { user } = useAuth();
+console.log(user)
   useEffect(() => {
     fetchCocktails()
       .then((cocktails) => {

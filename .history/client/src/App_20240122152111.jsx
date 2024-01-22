@@ -11,9 +11,11 @@ import "./App.css";
 function LayoutWithHeader() {
   return (
     <>
+   
       <Header />
       <Routes>
         <Route path="/" element={<CocktailList />} />
+        
       </Routes>
     </>
   );
@@ -21,19 +23,19 @@ function LayoutWithHeader() {
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="app">
-          <Routes>
-            <Route path="/" element={<LayoutWithHeader />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<LayoutWithHeader />}/>
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+      
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
