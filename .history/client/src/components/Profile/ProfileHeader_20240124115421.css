@@ -1,0 +1,53 @@
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-picture-container {
+  width: 100px; /* Adjust based on your preference */
+  height: 100px; /* Adjust to maintain aspect ratio */
+  border-radius: 50%; /* Makes the div circular */
+  background-color: #ccc; /* Default background color */
+  overflow: hidden; /* Ensures the image fits within the circle */
+  cursor: pointer; /* Indicates the div is clickable */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-picture-default {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #ddd; /* Placeholder background */
+}
+
+.profile-picture {
+  width: 100%;
+  height: auto;
+}
+
+.background-upload-section {
+  flex-grow: 1; /* Ensures it takes up the remaining space */
+  position: relative; /* For positioning the upload button */
+}
+
+.background-default {
+  width: 100%;
+  height: 100px; /* Adjust based on your header height */
+  background-color: #eee; /* Default background */
+}
+
+.background-image {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  position: absolute; /* Positions the button over the background */
+  right: 10px; /* Adjust based on your layout */
+  bottom: 10px; /* Adjust based on your layout */
+}

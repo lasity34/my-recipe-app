@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
 import Admin from "./components/Admin/Admin";
-import Profile from './components/Profile/Profile';
+import Profile from './components/Profile';
 import { AuthProvider } from "./context/AuthContext";
 import "./App.css";
 import './axiosConfig';
@@ -32,7 +32,6 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
       </Router>

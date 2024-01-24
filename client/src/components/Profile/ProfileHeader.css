@@ -1,0 +1,51 @@
+.profile-header {
+    position: relative;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 10px;
+  }
+  
+  .profile-picture-container {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #ccc;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Position it absolutely within the header */
+    bottom: -50px; /* Halfway outside the bottom */
+    left: 40px; /* Adjust based on your layout */
+  }
+  
+  .profile-picture-default {
+    width: 100%;
+    height: 100%;
+    background-color: #ddd; /* Ensure this is visible */
+  }
+  
+  .profile-picture {
+    width: 100%;
+    height: auto;
+  }
+  
+  .upload-background-button {
+    /* Unique styles for the background upload button */
+    cursor: pointer;
+    padding: 5px 10px; /* Example padding, adjust as needed */
+    margin-top: 10px; /* To ensure it's not at the very top */
+  }
+  
+  /* If you decide to use a .background-default class */
+  .background-default {
+    width: 100%;
+    height: 100%;
+    background-color: #eee; /* Default background if no image is uploaded */
+  }
+  

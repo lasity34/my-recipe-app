@@ -1,0 +1,22 @@
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .profile-upload-section, .background-upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-picture, .background-image {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    object-fit: cover;
+  }
+  
+  .profile-info {
+    text-align: center;
+  }
+  

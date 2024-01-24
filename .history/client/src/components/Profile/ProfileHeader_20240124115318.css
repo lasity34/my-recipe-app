@@ -1,0 +1,43 @@
+.profile-header {
+    position: relative; /* Needed for absolute positioning of children */
+    height: 200px; /* Adjust based on your desired header height */
+    background-size: cover; /* Ensures background image covers the header */
+    background-position: center; /* Center the background image */
+    display: flex;
+    justify-content: flex-start; /* Aligns items to the start */
+    align-items: flex-end; /* Aligns items to the bottom */
+    padding: 10px; /* Adds some padding around the edges */
+  }
+  
+  .profile-picture-container {
+    margin-bottom: -40px; /* Half of the container's height to overlap */
+    position: absolute; /* Absolute positioning to place it over the header */
+    bottom: 0; /* Aligns to the bottom of the header */
+    left: 10px; /* Adjust based on your layout to inset from left */
+    width: 80px; /* Adjust based on your preference */
+    height: 80px; /* Adjust to maintain aspect ratio */
+    border-radius: 50%; /* Makes the div circular */
+    background-color: #ccc; /* Default background color */
+    overflow: hidden; /* Ensures the image fits within the circle */
+    cursor: pointer; /* Indicates the div is clickable */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile-picture-default {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #ddd; /* Placeholder background */
+  }
+  
+  .profile-picture {
+    width: 100%; /* Ensures image covers the container */
+    height: auto;
+  }
+  
+
+  
