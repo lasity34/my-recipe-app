@@ -32,13 +32,8 @@
   
   .profile-picture {
     width: 100%;
-    height: 110%;
-    object-fit: cover; /* This will cover the area without stretching the image */
-    border-radius: 50%; /* To maintain the circular shape */
-    padding: 0;
-    border: 0;
+    height: auto;
   }
-  
   
   .upload-background-button {
     /* Unique styles for the background upload button */
@@ -61,7 +56,7 @@
     color: #fff; /* Choose a color that stands out against your header background */
     text-decoration: none; /* Optional: Removes the underline from the link */
     padding: 5px 10px; /* Adds some padding for better clickability */
-   
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background for better visibility */
     border-radius: 5px; /* Optional: Rounds the corners of the link background */
   }
   

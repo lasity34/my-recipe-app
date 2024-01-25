@@ -48,7 +48,6 @@ app.use(express.static('build'));
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.use('/api/images', imageRoutes);
 app.use('/api/cocktails', cocktailsRouter);
 app.use('/api/auth', authRouter);
 

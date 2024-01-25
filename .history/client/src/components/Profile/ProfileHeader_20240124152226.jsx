@@ -1,10 +1,7 @@
 import React, { useRef, useState } from 'react';
 import "./ProfileHeader.css"; // Make sure your CSS is updated accordingly
-import { useAuth } from '../../context/AuthContext';
-import { uploadImage } from '../../api/Cocktail';
 
 function ProfileHeader() {
-  const { user } = useAuth();
   const [profilePicture, setProfilePicture] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState(null);
   const profileInputRef = useRef(null);
@@ -12,9 +9,10 @@ function ProfileHeader() {
 
   const handleProfilePictureChange = async (event) => {
     const file = event.target.files[0];
-    if (file && user) { // Check for file and user existence
+    if (file) {
       try {
-        const imageUrl = await uploadImage(file, user.userId, 'profile'); // Use user.userId
+        const userId = 'USER_ID'; // Obtain this from your application's state/context
+        const imageUrl = await uploadImage(file, userId, 'profile');
         setProfilePicture(imageUrl);
       } catch (error) {
         console.error('Error uploading profile picture:', error);
@@ -24,15 +22,15 @@ function ProfileHeader() {
 
   const handleBackgroundImageChange = async (event) => {
     const file = event.target.files[0];
-    if (file && user) { // Check for file and user existence
+    if (file) {
       try {
-        const imageUrl = await uploadImage(file, user.userId, 'background'); // Use user.userId
+        const userId = 'USER_ID'; // Obtain this from your application's state/context
+        const imageUrl = await uploadImage(file, userId, 'background');
         setBackgroundImage(imageUrl);
       } catch (error) {
         console.error('Error uploading background image:', error);
       }
     }
-  };
 
   return (
     <div className="profile-header" style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {}}>

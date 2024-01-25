@@ -25,14 +25,10 @@ export const AuthProvider = ({ children }) => {
       try {
         const authData = await checkAuth();
         if (authData.isLoggedIn) {
-          if (authData.isLoggedIn) {
-            setUser({ userId: authData.userId, username: authData.username }); // Adjust based on your authData structure
-          } else {
-            setUser(null);
-          }
-          
+          setUser(authData.username);
         } else {
-      
+          // Handle the case where the user is not logged in
+          // Possibly reset the user state or perform other actions
           setUser(null);
         }
       } catch (error) {

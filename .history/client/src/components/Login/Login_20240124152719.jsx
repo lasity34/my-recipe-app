@@ -26,7 +26,7 @@ function Login() {
     e.preventDefault();
     try {
       const userData = await loginUser(credentials);  // Use loginUser function
-     
+
       login(userData); // Update authentication state
 
       // Redirect based on user role

@@ -2,7 +2,7 @@ import express from "express"
 import cors from 'cors';
 import cocktailsRouter from './routes/cocktails.js'; 
 import authRouter from './routes/authRoutes.js';
-import imageRoutes from './routes/imageRoutes.js';
+
 import session from 'express-session';
 import 'dotenv/config';
 const app = express();
@@ -48,7 +48,6 @@ app.use(express.static('build'));
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.use('/api/images', imageRoutes);
 app.use('/api/cocktails', cocktailsRouter);
 app.use('/api/auth', authRouter);
 

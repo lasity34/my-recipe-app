@@ -74,7 +74,7 @@ export const checkAuth = async () => {
 };
 
 
-export const uploadImage = async (file, userId, imageType) => {
+xport const uploadImage = async (file, userId, imageType) => {
     const formData = new FormData();
     formData.append('image', file);
   

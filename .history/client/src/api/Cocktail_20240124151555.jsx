@@ -73,26 +73,3 @@ export const checkAuth = async () => {
         });
 };
 
-
-export const uploadImage = async (file, userId, imageType) => {
-    const formData = new FormData();
-    formData.append('image', file);
-  
-    try {
-      const response = await axios.post(`${BASE_URL}/images/upload`, formData, {
-        params: { userId, imageType }, // Passing userId and imageType as query parameters
-        headers: { 'Content-Type': 'multipart/form-data' },
-        withCredentials: true,
-      });
-  
-      if (response.status === 200) {
-        return response.data.imageUrl; // Return the image URL from the server
-      } else {
-        console.error('Upload failed:', response.statusText);
-        throw new Error('Upload failed');
-      }
-    } catch (error) {
-      console.error('Error uploading image:', error);
-      throw error;
-    }
-  };

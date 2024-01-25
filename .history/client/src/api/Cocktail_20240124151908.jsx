@@ -74,19 +74,20 @@ export const checkAuth = async () => {
 };
 
 
-export const uploadImage = async (file, userId, imageType) => {
+export const uploadProfilePicture = async (file, userId) => {
     const formData = new FormData();
     formData.append('image', file);
   
     try {
-      const response = await axios.post(`${BASE_URL}/images/upload`, formData, {
-        params: { userId, imageType }, // Passing userId and imageType as query parameters
-        headers: { 'Content-Type': 'multipart/form-data' },
-        withCredentials: true,
+      const response = await axios.post(`${BASE_URL}/images/uploadImage`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: true, // Include cookies for session-based authentication
       });
   
       if (response.status === 200) {
-        return response.data.imageUrl; // Return the image URL from the server
+        return response.data.imageUrl; // Return the URL from your server
       } else {
         console.error('Upload failed:', response.statusText);
         throw new Error('Upload failed');

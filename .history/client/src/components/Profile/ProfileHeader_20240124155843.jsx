@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import "./ProfileHeader.css"; // Make sure your CSS is updated accordingly
 import { useAuth } from '../../context/AuthContext';
-import { uploadImage } from '../../api/Cocktail';
 
 function ProfileHeader() {
   const { user } = useAuth();
