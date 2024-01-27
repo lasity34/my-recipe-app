@@ -4,10 +4,14 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./Header.css";
 import { fetchCocktails } from "../../api/Cocktail";
 import { useAuth } from "../../context/AuthContext";
+import { useLocation } from 'react-router-dom';
+
 
 export default function Header() {
   const [cocktailOfTheDay, setCocktailOfTheDay] = useState(null);
   const { user, logout } = useAuth();
+  const location = useLocation();
+
 
   const handleLogout = () => {
     logout(); // Call the logout function from your Auth context
@@ -15,14 +19,16 @@ export default function Header() {
   };
 
   useEffect(() => {
-    fetchCocktails()
-      .then((cocktails) => {
-        if (cocktails && cocktails.length > 0) {
-          setCocktailOfTheDay(cocktails[0]);
-        }
-      })
-      .catch((error) => console.error("Error fetching cocktails:", error));
-  }, []);
+    if (location.pathname === '/') {
+      fetchCocktails()
+        .then((cocktails) => {
+          if (cocktails && cocktails.length > 0) {
+            setCocktailOfTheDay(cocktails[0]);
+          }
+        })
+        .catch((error) => console.error("Error fetching cocktails:", error));
+    }
+  }, [location.pathname]); // React to ch
 
   return (
     <div className="header_container">

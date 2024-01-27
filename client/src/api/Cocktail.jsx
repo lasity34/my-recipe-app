@@ -74,19 +74,20 @@ export const checkAuth = async () => {
 };
 
 
-export const uploadImage = async (file, userId, imageType) => {
+export const uploadImage = async (file, imageType) => {
     const formData = new FormData();
     formData.append('image', file);
-  
+    formData.append('imageType', imageType);
     try {
       const response = await axios.post(`${BASE_URL}/images/upload`, formData, {
-        params: { userId, imageType }, // Passing userId and imageType as query parameters
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true,
       });
   
       if (response.status === 200) {
-        return response.data.imageUrl; // Return the image URL from the server
+        console.log(response)
+        // Assuming the back-end returns the uploaded image URL or key in the response
+        return response.data.imageUrl; // Make sure this matches what your back-end actually returns
       } else {
         console.error('Upload failed:', response.statusText);
         throw new Error('Upload failed');
@@ -96,3 +97,28 @@ export const uploadImage = async (file, userId, imageType) => {
       throw error;
     }
   };
+
+
+
+  export const fetchImage = async (userId, imageType) => {
+
+    const endpoint = `${BASE_URL}/images/${userId}/${imageType}`;
+    try {
+      const response = await axios.get(endpoint, {
+        withCredentials: true,
+      });
+  
+      if (response.status === 200) {
+        // Assuming the back-end sends the pre-signed URL in a property named 'url'
+        return response.data.url;
+      } else {
+        console.error('Failed to fetch image:', response.statusText);
+        throw new Error('Failed to fetch image');
+      }
+    } catch (error) {
+      console.error('Error fetching image:', error);
+      throw error;
+    }
+  };
+  
+  

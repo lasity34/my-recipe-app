@@ -25,14 +25,8 @@ export const AuthProvider = ({ children }) => {
       try {
         const authData = await checkAuth();
         if (authData.isLoggedIn) {
-          if (authData.isLoggedIn) {
-            setUser({ userId: authData.userId, username: authData.username }); // Adjust based on your authData structure
-          } else {
-            setUser(null);
-          }
-          
+          setUser({ userId: authData.userId, username: authData.username }); // Adjust based on your authData structure
         } else {
-      
           setUser(null);
         }
       } catch (error) {
@@ -43,6 +37,7 @@ export const AuthProvider = ({ children }) => {
   
     checkLoggedIn();
   }, []);
+  
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

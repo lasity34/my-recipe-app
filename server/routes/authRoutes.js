@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
       req.session.userId = user.id; // Store user ID in session, which is very important
       req.session.username = user.username; // Store username in session (optional, for convenience)
       req.session.role = user.role; // Store user role in session (optional, depending on your app's needs)
-
+  
       // Return essential user data, including their userId, username, and role
       res.json({
         message: 'Logged in successfully',
@@ -75,8 +75,10 @@ router.post('/login', async (req, res) => {
 // Assuming you're using express-session or a similar package for session handling
 router.get('/check-auth', (req, res) => {
   if (req.session && req.session.userId) {
+    // Include userId in the response
     res.json({
       isLoggedIn: true,
+      userId: req.session.userId, // Make sure this matches how you store userId in session
       username: req.session.username,
       role: req.session.role,
     });
@@ -84,6 +86,7 @@ router.get('/check-auth', (req, res) => {
     res.json({ isLoggedIn: false });
   }
 });
+
 
 // In your authRoutes.js or a similar file
 router.post('/logout', (req, res) => {
